@@ -1,31 +1,58 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Employee Directory</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1"/>
-        <link rel="stylesheet" href="css/styles.css" />
-    </head>
-
-    <body>
-        
-	<div id="header" class="header">
-		<h1>Employee Directory</h1>
-	</div>
-	<div id="header2">
-		<h2>Employee List</h2>
-	</div>
+  <head>
+    <meta name="viewport" content="width=screen.width; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Audio2</title>
+	<script type="text/javascript" charset="utf-8" src="main.js"></script>
+  </head>
+<body>
+ 
+<div data-role="page" data-theme="a" id="page-home">
+	<div data-role="header" data-nobackbtn="true" data-theme="e">
+    <h1>Audio Player with 2 Modes</h1>
+	</div> <!-- /header -->
+	    	
+    <div data-role="navbar" data-theme="c">
+		<ul>
+			<li><a id="nav-manual">Manual Control</a></li>
+			<li><a id="nav-flip">Flip Control</a></li>
+		</ul>
+	</div><!-- /navbar -->		
 	
-	<div id="wrapper">
-		<ul id="employeeList" class="icon-list"></ul>
-	</div>
+	<div data-role="content" id="content-manual" data-theme="a">
+	
+		<div data-role="button" id="playaudio" data-theme="e">Play</div>
+		<div data-role="button" id="pauseaudio" data-theme="e">Pause</div>
+		<div data-role="button" id="stopaudio" data-theme="e">Stop</div>	
+	
+	</div>  <!-- /content-manual -->
+	
+	<div data-role="content" id="content-flip" data-theme="a">
 
-	<div id="busy"/>Loading...</div>
+		<p>Switch <strong>ON</strong> to start Flip Control mode.</p>
+		
+		<p>Flip phone face down to start music, face up to pause music.</p>
 
-	<script src="js/phonegap.js"></script>
-    <script src="js/jquery.js"></script>
-    <script src="js/iscroll.js"></script>
-    <script src="js/employeelist.js"></script>
-
-    </body>
-
+		<div data-role="fieldcontain" data-theme="e">
+			<label for="pauseslider" data-theme="e">Start/Stop Flip Control Mode</label> 
+			<select name="pauseslider" id="pauseslider" data-role="slider" data-theme="e">
+				<option value="off" data-theme="e">OFF</option>
+				<option value="on" data-theme="e">ON</option>
+			</select>
+		</div>
+			
+	</div> <!-- /content-flip -->
+	
+	<div data-role="footer" data-theme="e">
+    <div data-role="navbar">
+		<ul>	
+			<li><a> Current: <span id="audio_position">0 sec</span></a></li>
+			<li><a>Total: <span id=media_dur>0</span> sec</a></li>
+		</ul>	
+	</div><!-- /navbar -->
+	</div> <!-- /footer -->
+	
+</div>  <!-- /page -->
+</body>
 </html>
