@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/newyork.html -->
+<html class="ui-mobile"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!--<base href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html">--><base href=".">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<title>New York</title>
+	<link rel="stylesheet" href="http://jquerymobile.com/demos/1.3.0-beta.1/css/themes/default/jquery.mobile-1.3.0-beta.1.css">
+	<link rel="stylesheet" href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/_assets/css/jqm-demos.css">
+	<script src="./New_York_files/jquery-1.7.1.min.js"></script>
+	<script src="./New_York_files/jquery.mobile.demos.js"></script>
+	<script>
+		// Bind to "mobileinit" before you load jquery.mobile.js
+		// Set the default transition to slide
+		$(document).on( "mobileinit", function() {
+			$.mobile.defaultPageTransition = "slide";
+		});	
+	</script>
+	<script src="./New York_files/jquery.mobile-1.3.0-beta.1.js"></script>
+	<script>
+		$( document ).on( "pageinit", "[data-role='page'].demo-page", function() {
+			var page = "#" + $( this ).attr( "id" ),
+				// Get the filename of the next page that we stored in the data-next attribute
+				next = $( this ).jqmData( "next" ),
+				// Get the filename of the previous page that we stored in the data-prev attribute
+				prev = $( this ).jqmData( "prev" );
+			
+			// Check if we did set the data-next attribute
+			if ( next ) {
+				// Prefetch the next page
+				$.mobile.loadPage( next + ".html" );
+				// Navigate to next page on swipe left
+				$( document ).on( "swipeleft", page, function() {
+					$.mobile.changePage( next + ".html" );
+				});
+				// Navigate to next page when the "next" button is clicked
+				$( ".control .next", page ).on( "click", function() {
+					$.mobile.changePage( next + ".html" );
+				});
+			}
+			// Disable the "next" button if there is no next page
+			else {
+				$( ".control .next", page ).addClass( "ui-disabled" );
+			}
+			// The same for the previous page (we set data-dom-cache="true" so there is no need to prefetch)
+			if ( prev ) {
+				$( document ).on( "swiperight", page, function() {
+					$.mobile.changePage( prev + ".html", { reverse: true } );
+				});
+				$( ".control .prev", page ).on( "click", function() {
+					$.mobile.changePage( prev + ".html", { reverse: true } );
+				});
+			}
+			else {
+				$( ".control .prev", page ).addClass( "ui-disabled" );
+			}
+		});
+    </script>
+	<style>
+		/* Set the background image sources */
+		#newyork { background-image: url(../_assets/img/newyork.jpg); }
+		#buenosaires { background-image: url(../_assets/img/buenosaires.jpg); }
+		#paris { background-image: url(../_assets/img/paris.jpg); }
+		#capetown { background-image: url(../_assets/img/capetown.jpg); }
+		#seoul { background-image: url(../_assets/img/seoul.jpg); }
+		#sydney { background-image: url(../_assets/img/sydney.jpg); }
+		/* Background settings */
+		.demo-page {
+			background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+		/* Transparent footer */
+		.ui-footer {
+			background: none;
+			border: none;
+		}
+		/* The footer won't have a height because there are only two absolute positioned elements in it.
+		So we position the buttons from the bottom. */
+		.control.ui-btn-left, .trivia-btn.ui-btn-right {
+			top: auto;
+			bottom: 7px;
+			margin: 0;
+		}
+		/* Custom styling for the trivia source */
+		small {
+			font-size: .75em;
+			color: #666;
+		}
+		/* Prevent text selection while swiping with mouse */
+		.ui-header, .ui-title, .control .ui-btn, .trivia-btn {
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			-o-user-select: none;
+			user-select: none;
+		}
+	</style>
+</head>
+<body class="ui-mobile-viewport ui-overlay-a">
+
+<div data-role="page" data-theme="c" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" tabindex="0" class="ui-page ui-body-c" style="min-height: 1032px;">
+
+    <div data-role="header" data-theme="f" class="ui-header ui-bar-f" role="banner">
+        <h1 class="ui-title" role="heading" aria-level="1">Swipe page demo</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/" data-icon="home" data-iconpos="notext" data-ajax="false" class="ui-btn-left ui-btn ui-btn-up-f ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+  
+	<div data-role="content" class="ui-content" role="main">
+
+		<div class="content-primary">
+        
+        	<h2>Swipe to navigate</h2>
+        
+            <div data-demo-html="#city" data-demo-js="true" data-demo-css="true">
+            	<p>This demo shows how you can use the swipe event to navigate between pages. We are using single HTML files for each page. Here you can see the JavaScript and CSS source. On each of the demo pages you can see the page markup as well.</p>
+                
+                <p><a href="./New York_files/New York.htm" data-transition="fade" data-role="button" data-inline="true" data-theme="c" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c"><span class="ui-btn-inner"><span class="ui-btn-text">Open swipe page demo</span></span></a></p>
+            </div>
+            
+		</div><!--/content-primary -->
+    
+	</div><!-- /content -->
+
+</div><!-- /page -->
+
+<div data-role="page" id="city" class="demo-page" data-dom-cache="true" data-theme="a" data-prev="prevCity" data-next="nextCity" data-url="city">
+
+	<!-- "city", "prevCity" and "nextCity" are used as placeholders and contain the name of the applicable city in our demo files. -->
+
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false">
+		<h1>City</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Back</a>
+    </div><!-- /header -->
+	
+	<div data-role="content">
+    
+		<div id="trivia-city" class="trivia ui-content" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<p>Here some text.</p>
+        </div><!-- /popup -->
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false">
+		<div data-role="controlgroup" class="control ui-btn-left" data-type="horizontal" data-mini="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d">Previous</a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d">Next</a>
+        </div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-city" data-rel="popup" class="trivia-btn ui-btn-right" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true">Trivia</a>
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default"><span class="ui-icon ui-icon-loading"></span><h1>loading</h1></div><div data-role="page" id="newyork" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen ui-page-active" data-dom-cache="true" data-theme="a" data-next="buenosaires" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/newyork.html" data-external-page="true" tabindex="0" style="min-height: 1032px;">
+
+    <div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+        <h1 class="ui-title" role="heading" aria-level="1">New York</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+  
+	<div data-role="content" class="ui-content" role="main">
+    
+		<div style="display: none;"><!-- placeholder for trivia-newyork --></div>
+
+	</div><!-- /content -->
+
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child ui-disabled" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-newyork" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-newyork"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-newyork-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-newyork-popup"><div id="trivia-newyork" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+			<p>Although many legends exist about the origin of New York City's nickname, the Big Apple, most historians agree that it can be traced back to a writer who covered horse racing in the 1920s. In The Morning Telegraph, he wrote that stable hands often referred to New York as the Big Apple, meaning that any thoroughbred that raced in New York had reached the pinnacle of racing. <small>source:&nbsp;nylady.hubpages.com</small></p>
+        </div></div></div><div data-role="page" id="buenosaires" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen" data-dom-cache="true" data-theme="a" data-prev="newyork" data-next="paris" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/buenosaires.html" data-external-page="true" tabindex="0">
+
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+		<h1 class="ui-title" role="heading" aria-level="1">Buenos Aires</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+	
+	<div data-role="content" class="ui-content" role="main">
+    
+		<div style="display: none;"><!-- placeholder for trivia-buenosaires --></div>
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-buenosaires" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-buenosaires"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-buenosaires-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-buenosaires-popup"><div id="trivia-buenosaires" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+			<p>At 140 meters (16 lanes), Avenida 9 de Julio in Buenos Aires is the world’s widest avenue. Its name honors Argentina’s birthdate. (July 9, 1816). The avenue runs roughly one kilometer to the west of the Río de la Plata waterfront, from the Retiro district in the north to Constitución station in the south. <small>source:&nbsp;inautonews.com</small></p>
+        </div></div></div><div data-role="page" id="paris" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen" data-dom-cache="true" data-theme="a" data-prev="buenosaires" data-next="capetown" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/paris.html" data-external-page="true" tabindex="0">
+
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+		<h1 class="ui-title" role="heading" aria-level="1">Paris</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+	
+	<div data-role="content" class="ui-content" role="main">
+		
+		<div style="display: none;"><!-- placeholder for trivia-paris --></div>
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-paris" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-paris"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-paris-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-paris-popup"><div id="trivia-paris" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+			<p>Each year, 44 million tourists visit Paris and the surrounding Ile de France region. Paris is year after year the most visited city in the world. <small>source:&nbsp;parisdigest.com</small></p>
+        </div></div></div><div data-role="page" id="capetown" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen" data-dom-cache="true" data-theme="a" data-prev="paris" data-next="seoul" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/capetown.html" data-external-page="true" tabindex="0">
+
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+		<h1 class="ui-title" role="heading" aria-level="1">Cape Town</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+	
+	<div data-role="content" class="ui-content" role="main">
+		
+		<div style="display: none;"><!-- placeholder for trivia-capetown --></div>
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-capetown" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-capetown"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-capetown-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-capetown-popup"><div id="trivia-capetown" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+        	<p> Although it’s the youngest official language in the world, Afrikaans is most widely spoken and is home language for 40% of the Cape's population. The remainder of the population speaks either Xhosa or English as a home language. <small>source:&nbsp;gotravel24.com</small></p>
+        </div></div></div><div data-role="page" id="seoul" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen" data-dom-cache="true" data-theme="a" data-prev="capetown" data-next="sydney" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/seoul.html" data-external-page="true" tabindex="0">
+	
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+		<h1 class="ui-title" role="heading" aria-level="1">Seoul</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+	
+	<div data-role="content" class="ui-content" role="main">
+
+		<div style="display: none;"><!-- placeholder for trivia-seoul --></div>
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-seoul" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-seoul"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-seoul-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-seoul-popup"><div id="trivia-seoul" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+        	<p>Seoul, officially the Seoul Special City, is the capital and largest city of South Korea. With a population of over 10 million, it is one of the world's largest cities. The Seoul National Capital Area, which includes the Incheon metropolis and most of Gyeonggi province, has 24.5 million inhabitants. <small>source:&nbsp;bezbrige.com</small></p>
+        </div></div></div><div data-role="page" id="sydney" class="demo-page ui-page ui-body-a ui-page-header-fullscreen ui-page-footer-fullscreen" data-dom-cache="true" data-theme="a" data-prev="seoul" data-url="/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html" data-external-page="true" tabindex="0">
+
+	<div data-role="header" data-position="fixed" data-fullscreen="true" data-id="hdr" data-tap-toggle="false" class="ui-header ui-bar-a ui-header-fixed ui-header-fullscreen slidedown" role="banner">
+		<h1 class="ui-title" role="heading" aria-level="1">Sydney</h1>
+        <a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/swipe-page.html" data-ajax="false" data-direction="reverse" data-icon="delete" data-iconpos="notext" data-shadow="false" data-icon-shadow="false" class="ui-btn-left ui-btn ui-btn-up-a ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-iconshadow="true" data-wrapperels="span" data-theme="a" title="Back"><span class="ui-btn-inner"><span class="ui-btn-text">Back</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /header -->
+	
+	<div data-role="content" class="ui-content" role="main">
+
+		<div style="display: none;"><!-- placeholder for trivia-sydney --></div>
+
+	</div><!-- /content -->
+    
+    <div data-role="footer" data-position="fixed" data-fullscreen="true" data-id="ftr" data-tap-toggle="false" class="ui-footer ui-bar-a ui-footer-fixed ui-footer-fullscreen slideup" role="contentinfo">
+		<div data-role="controlgroup" class="control ui-btn-left ui-corner-all ui-controlgroup ui-controlgroup-horizontal ui-mini" data-type="horizontal" data-mini="true" aria-disabled="false" data-disabled="false" data-shadow="false" data-corners="true" data-exclude-invisible="true" data-init-selector=":jqmData(role=&#39;controlgroup&#39;)"><div class="ui-controlgroup-controls">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="prev ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-first-child" data-role="button" data-icon="arrow-l" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Previous"><span class="ui-btn-inner"><span class="ui-btn-text">Previous</span><span class="ui-icon ui-icon-arrow-l ui-icon-shadow">&nbsp;</span></span></a>
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" class="next ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-last-child ui-disabled" data-role="button" data-icon="arrow-r" data-iconpos="notext" data-theme="d" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Next"><span class="ui-btn-inner"><span class="ui-btn-text">Next</span><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></span></a>
+        </div></div>
+        
+		<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#trivia-sydney" data-rel="popup" class="trivia-btn ui-btn-right ui-btn ui-btn-up-d ui-shadow ui-btn-corner-all ui-mini ui-btn-icon-left" data-role="button" data-icon="info" data-iconpos="left" data-theme="d" data-mini="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" aria-haspopup="true" aria-owns="#trivia-sydney"><span class="ui-btn-inner"><span class="ui-btn-text">Trivia</span><span class="ui-icon ui-icon-info ui-icon-shadow">&nbsp;</span></span></a>
+    </div><!-- /footer -->
+
+<div class="ui-screen-hidden ui-popup-screen" id="trivia-sydney-screen"></div><div class="ui-popup-container ui-popup-hidden" id="trivia-sydney-popup"><div id="trivia-sydney" class="trivia ui-content ui-popup ui-body-d ui-overlay-shadow ui-corner-all" data-role="popup" data-position-to="window" data-tolerance="50,30,30,30" data-theme="d" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-dismissible="true">
+        	<a href="http://jquerymobile.com/demos/1.3.0-beta.1/docs/demos/swipe/sydney.html#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-notext" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"><span class="ui-btn-inner"><span class="ui-btn-text">Close</span><span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span></span></a>
+        	<p>The Sydney Opera House provides 45,000 square metres (11 acres) of usable office space out of 18,000 square metres (4.5 acres) of land. It is 183 metres (600 feet) tall and about 120 metres (388 feet) wide at its widest point. It is supported on 580 concrete piers sunk up to 25 metres below sea level. It has about 1000 rooms. It has five theatres, five rehearsal studios, two main halls, four restaurants, six bars and numerous souvenir shops. <small>source:&nbsp;sheppardsoftware.com</small></p>
+        </div></div></div></body></html>
